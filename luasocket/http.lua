@@ -9,7 +9,7 @@
 -------------------------------------------------------------------------------
 local socket = require("socket")
 local url = require("socket.url")
-local ltn12 = require("ltn12")
+local ltn12 = require("socket.ltn12")
 local mime = require("mime")
 local string = require("string")
 local headers = require("socket.headers")
@@ -32,14 +32,19 @@ local SCHEMES = {
         port = 80
         , create = function(t)
             return socket.tcp end }
-    , https = {
+    ,
+--[[ Ashita: SSL disabled for now.
+    https = {
         port = 443
         , create = function(t)
           local https = assert(
             require("ssl.https"), 'LuaSocket: LuaSec not found')
           local tcp = assert(
             https.tcp, 'LuaSocket: Function tcp() not available from LuaSec')
-          return tcp(t) end }}
+          return tcp(t) end 
+    }
+--]]
+}
 
 -- default scheme and port for document retrieval
 local SCHEME = 'http'

@@ -14,7 +14,7 @@ local math = require("math")
 local os = require("os")
 local socket = require("socket")
 local tp = require("socket.tp")
-local ltn12 = require("ltn12")
+local ltn12 = require("socket.ltn12")
 local headers = require("socket.headers")
 local mime = require("mime")
 
